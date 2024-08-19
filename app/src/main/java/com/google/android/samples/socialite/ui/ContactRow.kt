@@ -21,7 +21,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -46,13 +53,29 @@ fun ChatRow(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
+    // Add layoutDirection, displayCutout, startPadding, and endPadding.
+    val layoutDirection = LocalLayoutDirection.current
+    val displayCutout = WindowInsets.displayCutout.asPaddingValues()
+    val startPadding = displayCutout.calculateStartPadding(layoutDirection)
+    val endPadding = displayCutout.calculateEndPadding(layoutDirection)
     Row(
         modifier = modifier
             .fillMaxWidth()
             .then(
                 if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier,
             )
-            .padding(16.dp),
+            // .padding(16.dp) // Remove this line.
+            // Add this block:
+            .padding(
+                PaddingValues(
+                    top = 16.dp,
+                    bottom = 16.dp,
+                    // Ensure content is not occluded by display cutouts
+                    // when rotating the device.
+                    start = startPadding.coerceAtLeast(16.dp),
+                    end = endPadding.coerceAtLeast(16.dp)
+                )
+            ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {

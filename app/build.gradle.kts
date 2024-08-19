@@ -34,12 +34,12 @@ secrets {
 
 android {
     namespace = "com.google.android.samples.socialite"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.google.android.samples.socialite"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -62,8 +62,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
+        // https://github.com/jimgoog/ComposeAppUsingPrereleaseComposeCompiler#project-configuration
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     packaging {

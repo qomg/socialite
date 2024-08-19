@@ -5,3 +5,4 @@
 # Extra ignored files
 /appInsightsSettings.xml
 /inspectionProfiles/Project_Default.xml
+/other.xml

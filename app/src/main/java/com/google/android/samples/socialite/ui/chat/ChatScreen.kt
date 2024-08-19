@@ -210,7 +210,10 @@ private fun ChatContent(
                 contentPadding = innerPadding.copy(layoutDirection, bottom = 16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
+                    .weight(1f)
+                    /*.windowInsetsPadding(
+                        WindowInsets.ime.exclude(WindowInsets.navigationBars)
+                    )*/,
                 onVideoClick = onVideoClick,
             )
             InputBar(

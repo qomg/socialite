@@ -27,8 +27,23 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven {
-            setUrl("https://androidx.dev/snapshots/builds/11723120/artifacts/repository")
+            setUrl("https://androidx.dev/snapshots/builds/11723120/artifacts/repository") // 1.4.0-SNAPSHOT
         }
+//        maven {
+//            setUrl("https://androidx.dev/snapshots/builds/12244193/artifacts/repository") // 1.5.0-SNAPSHOT
+//        }
+//        maven {
+//            setUrl("https://androidx.dev/metalava/builds/12242179/artifacts/repo/m2repository")
+//        }
+//        maven {
+//            setUrl("https://androidx.dev/dackka/builds/12227732/artifacts/repo/repository")
+//        }
+//        maven {
+//            setUrl("https://androidx.dev/kmp/builds/12244193/artifacts/snapshots/repository")
+//        }
+//        maven {
+//            setUrl("https://androidx.dev/storage/compose-compiler/repository/")
+//        }
         google()
         mavenCentral()
     }
